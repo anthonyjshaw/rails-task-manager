@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: 'tasks#index'
   get 'tasks/new', to: 'tasks#new'
@@ -6,5 +8,4 @@ Rails.application.routes.draw do
   get 'tasks/:id/edit', to: 'tasks#edit', as: :edit
   patch 'tasks/:id/', to: 'tasks#update'
   delete 'tasks/:id', to: 'tasks#destroy'
-
 end

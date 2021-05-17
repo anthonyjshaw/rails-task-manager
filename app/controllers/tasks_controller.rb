@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :set_tasks, only: %i[show edit update destroy]
 
@@ -5,14 +7,7 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def show
 
-    @completed_task = if @task.completed
-                        "This task is completed"
-                      else
-                        "This task is not completed yet."
-                      end
-  end
 
   def new
     @task = Task.new
@@ -24,10 +19,20 @@ class TasksController < ApplicationController
     redirect_to task_path(@task)
   end
 
+  def show
+    @completed_task = if @task.completed
+                        'This task is completed'
+                      else
+                        'This task is not completed yet.'
+                      end
+  end
+
   def edit; end
 
   def update
     @task.update(task_params)
+
+    @task.save
     redirect_to task_path(@task)
   end
 
@@ -43,6 +48,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :details)
+    params.require(:task).permit(:title, :details, :completed)
   end
 end

@@ -1,9 +1,10 @@
-<h1> <%= @task.title %> </h1>
-
-<p>  <%= @task.details %> </p>
-
-<p> <%= @completed_task %> </p>
-
-<%= link_to "Edit this task", edit_path %>
-
-<%= link_to "Delete #{@task.title.downcase}", task_path(@task), method: :delete, data: {confirm: "Are you sure you want to delete #{@task.title}?"} %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"> <%= @task.title %> </h1>
+    <p class="lead">  <%= @task.details %> </p>
+    <p> <%= @completed_task %> </p>
+    <hr>
+    <p> <%= link_to "Edit this task", edit_path, class: "btn btn-primary" %> </p>
+    <p><%= link_to 'Back to all tasks', root_path %> </p>
+  </div>
+</div>
