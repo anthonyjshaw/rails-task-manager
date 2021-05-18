@@ -13,25 +13,26 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.save
-    redirect_to task_path(@task)
+    if @task.save
+      redirect_to task_path(@task)
+    else
+      render :new
+    end
   end
 
   def show
-    @completed_task = if @task.completed
-                        'This task is completed'
-                      else
-                        'This task is not completed yet.'
-                      end
+    @completed_task = @task.completed ? 'This task is completed.' : 'This task is not completed yet.'
   end
 
   def edit; end
 
   def update
     @task.update(task_params)
-
-    @task.save
-    redirect_to task_path(@task)
+    if @task.save
+      redirect_to task_path(@task)
+    else
+      render :edit
+    end
   end
 
   def destroy
