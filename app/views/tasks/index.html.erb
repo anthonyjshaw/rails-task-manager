@@ -9,7 +9,10 @@
           <%= link_to task.title, task_path(task.id) %>
         </div>
         <div class="card-text">
-          <%= link_to "Delete this task", task_path(task), method: :delete, data: {confirm: "Are you sure?", class: "modal"}, class: "alert alert-primary" %>
+          <%= link_to task_path(task), method: :delete, data: {confirm: "Are you sure?", class: "modal"} do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <%= sanitize @icon = task.completed ? '<i class="far fa-check-square"></i>' : '<i class="far fa-square"></i>' %>
         </div>
       </div>
     </div>
